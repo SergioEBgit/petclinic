@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -74,6 +75,13 @@ public class Vet extends Person {
 
 	public void addSpecialty(Specialty specialty) {
 		getSpecialtiesInternal().add(specialty);
+	}
+
+	@Override
+	public String toString() {
+		String str = super.toString() + "->";
+		str += this.getSpecialties().stream().map(s -> s.toString()).collect(Collectors.joining(","));
+		return str;
 	}
 
 }
