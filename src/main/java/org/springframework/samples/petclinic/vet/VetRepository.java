@@ -77,9 +77,6 @@ public interface VetRepository extends Repository<Vet, Integer> {
 	 *
 	 */
 
-	// @Query("SELECT vet FROM Vet vet join Specialty s join fetch vet.specialties where
-	// s.id=1")
-	// @Query("SELECT vet FROM Vet vet join fetch vet.specialties s where s.id IN (1)")
 	@Query("SELECT vet FROM Vet vet left join vet.specialties where specialty_id=1")
 	Page<Vet> findRadiologists(Pageable pageable);
 
