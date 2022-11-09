@@ -19,10 +19,14 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant
@@ -54,5 +58,28 @@ public interface VetRepository extends Repository<Vet, Integer> {
 	@Transactional(readOnly = true)
 	@Cacheable("vets")
 	Page<Vet> findAll(Pageable pageable) throws DataAccessException;
+
+	@Transactional(readOnly = true)
+	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")
+	Vet findOne(@Param("id") Integer id);
+
+	Vet save(Vet vet);
+
+	@Transactional(readOnly = true)
+	/*
+	 * @Query(value = "SELECT vet FROM Vet vet WHERE vet.id IN (" +
+	 * "SELECT vs.vet_id FROM vet_specialties vs join specialties s on vs.specialty_id = s.id where s.id="
+	 * + "(SELECT id FROM specialties where name LIKE 'radiology'))", nativeQuery = true)
+	 *
+	 */
+
+	// @Query("SELECT vet FROM Vet vet join Specialty s join fetch vet.specialties where
+	// s.id=1")
+	// @Query("SELECT vet FROM Vet vet join fetch vet.specialties s where s.id IN (1)")
+	@Query("SELECT vet FROM Vet vet left join vet.specialties where specialty_id=1")
+	Page<Vet> findRadiologists(Pageable pageable);
+
+	@Query("select distinct v from Vet v join fetch v.specialties s where s.name=:name")
+	List<Vet> findBySpecialtyName(@Param("name") String name);
 
 }
