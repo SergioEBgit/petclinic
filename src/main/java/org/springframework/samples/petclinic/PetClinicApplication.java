@@ -16,6 +16,7 @@
 
 package org.springframework.samples.petclinic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -24,10 +25,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.samples.petclinic.vet.Specialty;
-import org.springframework.samples.petclinic.vet.SpecialtyRepository;
-import org.springframework.samples.petclinic.vet.Vet;
-import org.springframework.samples.petclinic.vet.VetRepository;
+import org.springframework.samples.petclinic.specialty.Specialty;
+import org.springframework.samples.petclinic.specialty.SpecialtyRepository;
+import org.springframework.samples.petclinic.vet.*;
 
 /**
  * PetClinic Spring Boot Application.
@@ -35,46 +35,48 @@ import org.springframework.samples.petclinic.vet.VetRepository;
  * @author Dave Syer
  *
  */
+@Slf4j
 @SpringBootApplication
 public class PetClinicApplication {
 
-	Logger log = LoggerFactory.getLogger(PetClinicApplication.class);
+//	Logger log = LoggerFactory.getLogger(PetClinicApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(PetClinicApplication.class, args);
 	}
 
 	@Bean
-	public CommandLineRunner demoVetRepository(VetRepository vetRepository, SpecialtyRepository specialtyRepository) {
+	public CommandLineRunner demoVetRepository(VetService vetService, SpecialtyRepository specialtyRepository) {
 		return (args) -> {
 			log.info("*****************************************************");
 			log.info("BOOTCAMP - Spring y Spring Data - vetRepository");
 			log.info("*****************************************************");
 			log.info("Creamos un objeto Vet");
+
 			Vet vet = new Vet();
 			vet.setFirstName("Sergio");
 			vet.setLastName("Raposo Vargas");
 			log.info("Persistimos en BBDD");
-			vet = vetRepository.save(vet);
+			vet = vetService.save(vet);
 			log.info("Comprobamos que se ha creado correctamente");
-			Vet vetAux = vetRepository.findOne(vet.getId());
+			Vet vetAux = vetService.findOne(vet.getId());
 			log.info(vetAux.toString());
 			log.info("Editamos el objeto y añadimos una Speciality");
 			Specialty s = specialtyRepository.findOne(1);
 			vet.addSpecialty(s);
-			vet = vetRepository.save(vet);
+			vet = vetService.save(vet);
 			log.info(vet.toString());
 			log.info("Listamos todos los veterinarios");
-			for (Vet v : vetRepository.findAll()) {
+			for (Vet v : vetService.findAll()) {
 				log.info("Vet: " + v);
 			}
 			log.info("Listamos todos los radiólogos");
 			Pageable firstPage = PageRequest.of(0, 10);
-			for (Vet v : vetRepository.findRadiologists(firstPage).getContent())
+			for (Vet v : vetService.findRadiologists(firstPage).getContent())
 				log.info(v.toString());
 
 			log.info("FindBySpecialtyName");
-			for (Vet v : vetRepository.findBySpecialtyName("radiology"))
+			for (Vet v : vetService.findBySpecialtyName("radiology"))
 				log.info(v.toString());
 		};
 	}
