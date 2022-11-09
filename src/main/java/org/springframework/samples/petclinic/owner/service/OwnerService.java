@@ -1,11 +1,12 @@
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.owner.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.petclinic.owner.dao.OwnerRepository;
+import org.springframework.samples.petclinic.owner.dto.Owner;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class OwnerService {

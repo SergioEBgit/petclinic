@@ -1,14 +1,12 @@
-package org.springframework.samples.petclinic.pet;
+package org.springframework.samples.petclinic.pet.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.owner.Owner;
-import org.springframework.samples.petclinic.owner.OwnerService;
+import org.springframework.samples.petclinic.owner.dto.Owner;
+import org.springframework.samples.petclinic.owner.service.OwnerService;
+import org.springframework.samples.petclinic.pet.dao.PetRepository;
+import org.springframework.samples.petclinic.pet.dto.Pet;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

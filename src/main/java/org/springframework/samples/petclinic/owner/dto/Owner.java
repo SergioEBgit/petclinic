@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.owner.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +31,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
-import org.springframework.samples.petclinic.pet.Pet;
-import org.springframework.samples.petclinic.visit.Visit;
+import org.springframework.samples.petclinic.pet.dto.Pet;
+import org.springframework.samples.petclinic.visit.dto.Visit;
 import org.springframework.util.Assert;
 
 /**

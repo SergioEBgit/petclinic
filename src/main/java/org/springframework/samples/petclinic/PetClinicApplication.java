@@ -17,24 +17,18 @@
 package org.springframework.samples.petclinic;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.samples.petclinic.owner.Owner;
-import org.springframework.samples.petclinic.owner.OwnerService;
-import org.springframework.samples.petclinic.pet.Pet;
-import org.springframework.samples.petclinic.pet.PetService;
-import org.springframework.samples.petclinic.specialty.Specialty;
-import org.springframework.samples.petclinic.specialty.SpecialtyRepository;
-import org.springframework.samples.petclinic.specialty.SpecialtyService;
-import org.springframework.samples.petclinic.vet.*;
-
-import java.util.List;
+import org.springframework.samples.petclinic.owner.service.OwnerService;
+import org.springframework.samples.petclinic.pet.service.PetService;
+import org.springframework.samples.petclinic.specialty.dto.Specialty;
+import org.springframework.samples.petclinic.specialty.service.SpecialtyService;
+import org.springframework.samples.petclinic.vet.dto.Vet;
+import org.springframework.samples.petclinic.vet.service.VetService;
 
 /**
  * PetClinic Spring Boot Application.

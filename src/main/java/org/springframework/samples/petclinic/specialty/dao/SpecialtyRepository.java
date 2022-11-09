@@ -1,8 +1,9 @@
-package org.springframework.samples.petclinic.specialty;
+package org.springframework.samples.petclinic.specialty.dao;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.samples.petclinic.specialty.dto.Specialty;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

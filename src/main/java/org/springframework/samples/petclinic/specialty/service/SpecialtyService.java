@@ -1,6 +1,8 @@
-package org.springframework.samples.petclinic.specialty;
+package org.springframework.samples.petclinic.specialty.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.specialty.dao.SpecialtyRepository;
+import org.springframework.samples.petclinic.specialty.dto.Specialty;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
