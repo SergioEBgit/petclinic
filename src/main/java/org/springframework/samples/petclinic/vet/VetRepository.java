@@ -63,6 +63,10 @@ public interface VetRepository extends Repository<Vet, Integer> {
 	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")
 	Vet findOne(@Param("id") Integer id);
 
+	@Transactional(readOnly = true)
+	@Query("SELECT vet FROM Vet vet left join fetch vet.specialties WHERE vet.id =:id")
+	Vet findById(Integer id);
+
 	Vet save(Vet vet);
 
 	@Transactional(readOnly = true)
