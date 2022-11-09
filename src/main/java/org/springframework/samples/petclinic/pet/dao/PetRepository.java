@@ -6,6 +6,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.pet.dto.Pet;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public interface PetRepository extends Repository<Pet,Integer> {
@@ -20,4 +23,8 @@ public interface PetRepository extends Repository<Pet,Integer> {
 //	@Transactional(readOnly = true)
 //	@Query("SELECT pet FROM Pet pet WHERE pet.birthdate BETWEEN :fromDate AND :toDate")
 //	List<Pet> findByBirthDateOrderByBirthDateAsc(@Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
+//
+
+	@Transactional(readOnly = true)
+	List<Pet> findByBirthDateOrderByBirthDateAsc(@Param("BirthDate") LocalDate birthDate);
 }

@@ -24,11 +24,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.samples.petclinic.owner.service.OwnerService;
+import org.springframework.samples.petclinic.pet.dto.Pet;
 import org.springframework.samples.petclinic.pet.service.PetService;
 import org.springframework.samples.petclinic.specialty.dto.Specialty;
 import org.springframework.samples.petclinic.specialty.service.SpecialtyService;
 import org.springframework.samples.petclinic.vet.dto.Vet;
 import org.springframework.samples.petclinic.vet.service.VetService;
+
+import java.util.List;
 
 /**
  * PetClinic Spring Boot Application.
@@ -54,7 +57,7 @@ public class PetClinicApplication {
 			log.info("*****************************************************");
 			log.info("Creamos un objeto Vet");
 
-//			List<Pet> pets = petService.prueba(2010);
+//			List<Pet> pets = petService.findByBirthDate(2000);
 
 			Vet vet = new Vet();
 			vet.setFirstName("Sergio");

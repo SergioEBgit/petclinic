@@ -7,6 +7,9 @@ import org.springframework.samples.petclinic.pet.dao.PetRepository;
 import org.springframework.samples.petclinic.pet.dto.Pet;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +38,22 @@ public class PetService {
 		Owner tmp = this.ownerService.findById(owner.getId());
 		return tmp.getPets();
 	}
+
+
+	public List<Pet> findByBirthDate(Integer year){
+		Date fromDate,toDate;
+
+		try {
+			fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(year + "-01-01");
+			toDate = new SimpleDateFormat("yyyy-MM-dd").parse(year + "-12-31");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		LocalDate fecha = LocalDate.of(year.intValue(),11,30);
+		List<Pet>pets=this.petRepository.findByBirthDateOrderByBirthDateAsc(fecha);
+		return pets;
+	}
+
 //
 //	public List<Pet> prueba(Integer year){
 //		Date fromDate;
