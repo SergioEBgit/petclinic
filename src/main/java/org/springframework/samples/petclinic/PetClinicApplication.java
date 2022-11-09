@@ -60,35 +60,34 @@ public class PetClinicApplication {
 			log.info("*****************************************************");
 			log.info("Creamos un objeto Vet");
 
-			Owner owner = ownerService.findById(3);
-			List<Pet> pets = petService.findAllByOwner(owner);
-//
-//			Vet vet = new Vet();
-//			vet.setFirstName("Sergio");
-//			vet.setLastName("Raposo Vargas");
-//			log.info("Persistimos en BBDD");
-//			vet = vetService.save(vet);
-//			log.info("Comprobamos que se ha creado correctamente");
-//			Vet vetAux = vetService.findOne(vet.getId());
-//			log.info(vetAux.toString());
-//			log.info("Editamos el objeto y añadimos una Speciality");
-//			Specialty s = specialtyService.findOne(1);
-//			vet.addSpecialty(s);
-//			vet = vetService.save(vet);
-//			log.info(vet.toString());
-//			log.info("Listamos todos los veterinarios");
-//			for (Vet v : vetService.findAll()) {
-//				log.info("Vet: " + v);
-//			}
-//			log.info("Listamos todos los radiólogos");
-//			Pageable firstPage = PageRequest.of(0, 10);
-//			for (Vet v : vetService.findRadiologists(firstPage).getContent())
-//				log.info(v.toString());
-//
-//			log.info("FindBySpecialtyName");
-//			for (Vet v : vetService.findBySpecialtyName("radiology"))
-//				log.info(v.toString());
-		};
+//			List<Pet> pets = petService.prueba(2010);
+
+			Vet vet = new Vet();
+			vet.setFirstName("Sergio");
+			vet.setLastName("Raposo Vargas");
+			log.info("Persistimos en BBDD");
+			vet = vetService.save(vet);
+			log.info("Comprobamos que se ha creado correctamente");
+			Vet vetAux = vetService.findOne(vet.getId());
+			log.info(vetAux.toString());
+			log.info("Editamos el objeto y añadimos una Speciality");
+			Specialty s = specialtyService.findOne(1);
+			vet.addSpecialty(s);
+			vet = vetService.save(vet);
+			log.info(vet.toString());
+			log.info("Listamos todos los veterinarios");
+			for (Vet v : vetService.findAll()) {
+				log.info("Vet: " + v);
+			}
+			log.info("Listamos todos los radiólogos");
+			Pageable firstPage = PageRequest.of(0, 10);
+			for (Vet v : vetService.findRadiologists(firstPage).getContent())
+				log.info(v.toString());
+
+			log.info("FindBySpecialtyName");
+			for (Vet v : vetService.findBySpecialtyName("radiology"))
+				log.info(v.toString());
+};
 	}
 
 }

@@ -37,6 +37,16 @@ public class PetService {
 		Owner tmp = this.ownerService.findById(owner.getId());
 		return tmp.getPets();
 	}
-
-
+//
+//	public List<Pet> prueba(Integer year){
+//		Date fromDate;
+//		Date toDate;
+//		try {
+//			fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-01-01");
+//			toDate = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-12-31");
+//		} catch (ParseException e) {
+//			throw new RuntimeException(e);
+//		}
+//		return this.petRepository.findByBirthDateOrderByBirthDateAsc(fromDate,toDate);
+//	}
 }
