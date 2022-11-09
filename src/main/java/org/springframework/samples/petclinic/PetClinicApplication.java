@@ -25,9 +25,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.petclinic.owner.Owner;
+import org.springframework.samples.petclinic.owner.OwnerService;
+import org.springframework.samples.petclinic.pet.Pet;
+import org.springframework.samples.petclinic.pet.PetService;
 import org.springframework.samples.petclinic.specialty.Specialty;
 import org.springframework.samples.petclinic.specialty.SpecialtyRepository;
+import org.springframework.samples.petclinic.specialty.SpecialtyService;
 import org.springframework.samples.petclinic.vet.*;
+
+import java.util.List;
 
 /**
  * PetClinic Spring Boot Application.
@@ -46,38 +53,41 @@ public class PetClinicApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demoVetRepository(VetService vetService, SpecialtyRepository specialtyRepository) {
+	public CommandLineRunner demoVetRepository(VetService vetService, SpecialtyService specialtyService, OwnerService ownerService, PetService petService) {
 		return (args) -> {
 			log.info("*****************************************************");
 			log.info("BOOTCAMP - Spring y Spring Data - vetRepository");
 			log.info("*****************************************************");
 			log.info("Creamos un objeto Vet");
 
-			Vet vet = new Vet();
-			vet.setFirstName("Sergio");
-			vet.setLastName("Raposo Vargas");
-			log.info("Persistimos en BBDD");
-			vet = vetService.save(vet);
-			log.info("Comprobamos que se ha creado correctamente");
-			Vet vetAux = vetService.findOne(vet.getId());
-			log.info(vetAux.toString());
-			log.info("Editamos el objeto y añadimos una Speciality");
-			Specialty s = specialtyRepository.findOne(1);
-			vet.addSpecialty(s);
-			vet = vetService.save(vet);
-			log.info(vet.toString());
-			log.info("Listamos todos los veterinarios");
-			for (Vet v : vetService.findAll()) {
-				log.info("Vet: " + v);
-			}
-			log.info("Listamos todos los radiólogos");
-			Pageable firstPage = PageRequest.of(0, 10);
-			for (Vet v : vetService.findRadiologists(firstPage).getContent())
-				log.info(v.toString());
-
-			log.info("FindBySpecialtyName");
-			for (Vet v : vetService.findBySpecialtyName("radiology"))
-				log.info(v.toString());
+			Owner owner = ownerService.findById(3);
+			List<Pet> pets = petService.findAllByOwner(owner);
+//
+//			Vet vet = new Vet();
+//			vet.setFirstName("Sergio");
+//			vet.setLastName("Raposo Vargas");
+//			log.info("Persistimos en BBDD");
+//			vet = vetService.save(vet);
+//			log.info("Comprobamos que se ha creado correctamente");
+//			Vet vetAux = vetService.findOne(vet.getId());
+//			log.info(vetAux.toString());
+//			log.info("Editamos el objeto y añadimos una Speciality");
+//			Specialty s = specialtyService.findOne(1);
+//			vet.addSpecialty(s);
+//			vet = vetService.save(vet);
+//			log.info(vet.toString());
+//			log.info("Listamos todos los veterinarios");
+//			for (Vet v : vetService.findAll()) {
+//				log.info("Vet: " + v);
+//			}
+//			log.info("Listamos todos los radiólogos");
+//			Pageable firstPage = PageRequest.of(0, 10);
+//			for (Vet v : vetService.findRadiologists(firstPage).getContent())
+//				log.info(v.toString());
+//
+//			log.info("FindBySpecialtyName");
+//			for (Vet v : vetService.findBySpecialtyName("radiology"))
+//				log.info(v.toString());
 		};
 	}
 
