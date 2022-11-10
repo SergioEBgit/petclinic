@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.vet;
+package org.springframework.samples.petclinic.vet.controller;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @WebMvcTest(VetController.class)
-class VetControllerTests {
+public class VetControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;

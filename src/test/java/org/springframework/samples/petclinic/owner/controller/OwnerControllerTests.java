@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.owner.controller;
 
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasProperty;
@@ -59,7 +59,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 @WebMvcTest(OwnerController.class)
-class OwnerControllerTests {
+public class OwnerControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
 

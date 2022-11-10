@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.visit;
+package org.springframework.samples.petclinic.visit.controller;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -40,7 +40,7 @@ import org.springframework.test.web.servlet.MockMvc;
  * @author Colin But
  */
 @WebMvcTest(VisitController.class)
-class VisitControllerTests {
+public class VisitControllerTests {
 
 	private static final int TEST_OWNER_ID = 1;
 
