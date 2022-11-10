@@ -28,10 +28,18 @@ public class RestVisitController {
 				p = (v)->true;
 				break;
 			case "pagadas":
-				p = (v)->{return (v.getBill().getDate() != null);};
+				p = (v)->{
+					if (v.getBill() != null)
+						return (v.getBill().getDate() != null);
+					return false;
+				};
 				break;
 			case "no_pagadas":
-				p = (v)->{return (v.getBill().getDate() == null);};
+				p = (v)->{
+					if (v.getBill() != null)
+						return (v.getBill().getDate() == null);
+					return true;
+				};
 				break;
 		}
 		visits = visits.stream().filter(p).collect(Collectors.toList());
