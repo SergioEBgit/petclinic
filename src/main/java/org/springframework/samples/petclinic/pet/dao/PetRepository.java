@@ -11,20 +11,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public interface PetRepository extends Repository<Pet,Integer> {
+public interface PetRepository extends Repository<Pet, Integer> {
 
 	@Transactional(readOnly = true)
 	Optional<Pet> findById(Integer id);
 
 	@Transactional(readOnly = true)
 	@Query("SELECT pet FROM Pet pet WHERE name=:name")
-	Optional<Pet> findByName(@Param("name")String name);
+	Optional<Pet> findByName(@Param("name") String name);
 
-//	@Transactional(readOnly = true)
-//	@Query("SELECT pet FROM Pet pet WHERE pet.birthdate BETWEEN :fromDate AND :toDate")
-//	List<Pet> findByBirthDateOrderByBirthDateAsc(@Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
-//
+	// @Transactional(readOnly = true)
+	// @Query("SELECT pet FROM Pet pet WHERE pet.birthdate BETWEEN :fromDate AND :toDate")
+	// List<Pet> findByBirthDateOrderByBirthDateAsc(@Param("fromDate") Date fromDate,
+	// @Param("toDate") Date toDate);
+	//
 
 	@Transactional(readOnly = true)
 	List<Pet> findByBirthDateOrderByBirthDateAsc(@Param("BirthDate") LocalDate birthDate);
+
 }

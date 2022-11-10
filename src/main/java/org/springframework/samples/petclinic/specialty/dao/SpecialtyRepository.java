@@ -21,4 +21,5 @@ public interface SpecialtyRepository extends Repository<Specialty, Integer> {
 
 	@Transactional(readOnly = true)
 	List<Specialty> findAll();
+
 }

@@ -22,48 +22,50 @@ public class PetService {
 	@Autowired
 	private OwnerService ownerService;
 
-	public Pet findById(Integer id){
-		Optional<Pet> opt = this.petRepository.findById(id);;
-		Pet pet = opt.isPresent()? opt.get() : null;
+	public Pet findById(Integer id) {
+		Optional<Pet> opt = this.petRepository.findById(id);
+		;
+		Pet pet = opt.isPresent() ? opt.get() : null;
 		return pet;
 	}
 
-	public Pet findByPetName(String name){
+	public Pet findByPetName(String name) {
 		Optional<Pet> opt = this.petRepository.findByName(name);
-		Pet pet = opt.isPresent()? opt.get() : null;
+		Pet pet = opt.isPresent() ? opt.get() : null;
 		return pet;
 	}
 
-	public List<Pet> findAllByOwner(Owner owner){
+	public List<Pet> findAllByOwner(Owner owner) {
 		Owner tmp = this.ownerService.findById(owner.getId());
 		return tmp.getPets();
 	}
 
-
-	public List<Pet> findByBirthDate(Integer year){
-		Date fromDate,toDate;
+	public List<Pet> findByBirthDate(Integer year) {
+		Date fromDate, toDate;
 
 		try {
 			fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(year + "-01-01");
 			toDate = new SimpleDateFormat("yyyy-MM-dd").parse(year + "-12-31");
-		}catch(Exception e){
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-		LocalDate fecha = LocalDate.of(year.intValue(),11,30);
-		List<Pet>pets=this.petRepository.findByBirthDateOrderByBirthDateAsc(fecha);
+		LocalDate fecha = LocalDate.of(year.intValue(), 11, 30);
+		List<Pet> pets = this.petRepository.findByBirthDateOrderByBirthDateAsc(fecha);
 		return pets;
 	}
 
-//
-//	public List<Pet> prueba(Integer year){
-//		Date fromDate;
-//		Date toDate;
-//		try {
-//			fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-01-01");
-//			toDate = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-12-31");
-//		} catch (ParseException e) {
-//			throw new RuntimeException(e);
-//		}
-//		return this.petRepository.findByBirthDateOrderByBirthDateAsc(fromDate,toDate);
-//	}
+	//
+	// public List<Pet> prueba(Integer year){
+	// Date fromDate;
+	// Date toDate;
+	// try {
+	// fromDate = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-01-01");
+	// toDate = new SimpleDateFormat("yyyy-MM-dd").parse(year+"-12-31");
+	// } catch (ParseException e) {
+	// throw new RuntimeException(e);
+	// }
+	// return this.petRepository.findByBirthDateOrderByBirthDateAsc(fromDate,toDate);
+	// }
+
 }

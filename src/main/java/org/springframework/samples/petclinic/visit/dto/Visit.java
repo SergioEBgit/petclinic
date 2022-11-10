@@ -17,12 +17,11 @@ package org.springframework.samples.petclinic.visit.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.bill.dto.Bill;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
 /**
@@ -41,6 +40,10 @@ public class Visit extends BaseEntity {
 
 	@NotEmpty
 	private String description;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "bill_id", referencedColumnName = "id")
+	private Bill bill;
 
 	/**
 	 * Creates a new instance of Visit for the current date
@@ -63,6 +66,14 @@ public class Visit extends BaseEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Bill getBill() {
+		return this.bill;
+	}
+
+	public void setBill(Bill bill) {
+		this.bill = bill;
 	}
 
 }

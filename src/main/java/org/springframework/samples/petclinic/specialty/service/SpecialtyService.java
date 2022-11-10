@@ -13,15 +13,16 @@ public class SpecialtyService {
 	@Autowired
 	private SpecialtyRepository specialtyRepository;
 
-	public Specialty findById(Integer id){
+	public Specialty findById(Integer id) {
 		return this.specialtyRepository.findById(id);
 	}
 
-	public Specialty findOne(Integer id){
+	public Specialty findOne(Integer id) {
 		return this.specialtyRepository.findOne(id);
 	}
 
-	public List<Specialty> findAll(){
+	public List<Specialty> findAll() {
 		return this.specialtyRepository.findAll();
 	}
+
 }
