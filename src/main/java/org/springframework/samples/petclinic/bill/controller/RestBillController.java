@@ -22,7 +22,6 @@ public class RestBillController {
 	private VisitService visitService;
 
 	@RequestMapping(method = RequestMethod.GET,params = {"filter"})
-	@ResponseBody
 	public List<Bill> getBills(@RequestParam(value="filter",defaultValue = "all") String filter){
 		int page = 0;
 		int pageSize = 10;
